@@ -1,0 +1,9 @@
+bin
+.idea
+.ionide
+.vscode
+build
+cmake-build-debug
+lib
+external/*
+!external/CMakeLists.txt
