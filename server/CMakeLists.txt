@@ -28,6 +28,7 @@ find_package(Threads)
 find_package(Boost REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Drogon CONFIG REQUIRED)
+find_package(Trantor CONFIG REQUIRED)
 add_definitions(-DOM_STATIC_BUILD=1)
 
 
@@ -61,8 +62,9 @@ set_target_properties(${PROJECT_NAME}
 endif(WIN32)
 # include_directories(${DROGON_INCLUDE_DIRS})
 # link_libraries(${DROGON_LIBRARIES})
-message(STATUS ${DROGON_INCLUDE_DIRS})
-message(STATUS ${DROGON_LIBRARIES})
+message(${DROGON_INCLUDE_DIRS})
+message(${DROGON_LIBRARIES})
+message(${TRANTOR_LIBRARIES})
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC
@@ -85,14 +87,14 @@ target_link_libraries(${PROJECT_NAME}
         Boost::boost
 		OpenSSL::SSL
 		OpenSSL::Crypto
-        ${DROGON_LIBRARIES}
+		${DROGON_LIBRARIES}
+		${TRANTOR_LIBRARIES}
         )
 endif(UNIX)
 if(WIN32)
 target_link_libraries(${PROJECT_NAME}
         PUBLIC
 	Threads::Threads
-        PRIVATE
         Boost::boost
 		OpenSSL::SSL
 		OpenSSL::Crypto
